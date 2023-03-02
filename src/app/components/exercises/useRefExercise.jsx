@@ -1,14 +1,13 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import CollapseWrapper from "../common/collapse";
 const UseRefExercise = () => {
     const divRef = useRef();
-    const first = ({ children }) => {
-        return React.Children.map(children, (child) => {
-            console.log("child", child);
-            target.value = "text";
-        });
-    };
+    // const first = ({ children }) => {
+    //     return React.Children.map(children, (child) => {
+    //         console.log("child", child);
+    //         target.value = "text";
+    //     });
+    // };
     const handleClick = () => {
         divRef.current.style.width = "150px";
         divRef.current.style.height = "80px";
