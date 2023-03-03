@@ -7,9 +7,9 @@ export const SimpleComponent = ({ onLogin, onLogOut, isAuth }) => {
     return (
         <div>
             {isAuth ? (
-                <button onClick={onLogin}>Выйти из системы</button>
+                <button onClick={onLogOut}>Выйти из системы</button>
             ) : (
-                <button onClick={onLogOut}>Войти</button>
+                <button onClick={onLogin}>Войти</button>
             )}
         </div>
     );
@@ -25,17 +25,21 @@ SimpleComponent.propTypes = {
 
 // Наш Higher-Order Component
 export const withFunctions = (Component) => {
-    const localKay = localStorage.getItem("auth");
-    console.log("localKay", localKay);
-    const first = () => {
-        console.log("irst");
-        return localStorage.setItem("auth", "token");
+    return (props) => {
+        const localKay = localStorage.getItem("auth");
+        console.log("localKay", localKay);
+        const first = () => {
+            console.log("irst");
+            return localStorage.setItem("auth", "token");
+        };
+        const first2 = () => {
+            console.log("2irst");
+            return localStorage.removeItem("auth");
+        };
+        return (
+            <Component onLogin={first} onLogOut={first2} isAuth={localKay} />
+        );
     };
-    const first2 = () => {
-        console.log("2irst");
-        return localStorage.removeItem("auth");
-    };
-    return <Component onLogin={first} onLogOut={first2} isAuth={localKay} />;
 };
 
 // export default withFunctions(SimpleComponent);

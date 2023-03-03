@@ -1,9 +1,8 @@
 import React from "react";
 import CollapseWrapper from "../common/collapse";
-// import { useState } from "react";
+import PropTypes from "prop-types";
 
 const FormCompanent = ({ children }) => {
-    // let value = 1;
     const arrayChild = React.Children.toArray(children);
     console.log("arrayChild", arrayChild);
     return React.Children.map(arrayChild, (child) => {
@@ -13,7 +12,6 @@ const FormCompanent = ({ children }) => {
             value: +child.key.replace(".", "") + 1
         };
         console.log("config", config);
-        // value++;
         return React.cloneElement(child, config);
     });
 };
@@ -39,5 +37,8 @@ const ChildrenExercise = () => {
 
 const Component = ({ value }) => {
     return <div>{`Компонент ${value}`}</div>;
+};
+Component.propTypes = {
+    value: PropTypes.string
 };
 export default ChildrenExercise;
